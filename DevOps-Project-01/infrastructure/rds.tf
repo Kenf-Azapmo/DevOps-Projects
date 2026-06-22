@@ -2,7 +2,7 @@
 
 resource "aws_db_subnet_group" "main" {
   name       = "${var.environment}-db-subnet-group"
-  subnet_ids = var.subnet_ids
+  subnet_ids = aws_subnet.public[*].id
 
   tags = {
     Name        = "${var.environment}-db-subnet-group"
@@ -27,9 +27,14 @@ resource "aws_db_instance" "main" {
   password = var.db_password
 
   db_subnet_group_name   = aws_db_subnet_group.main.name
-  vpc_security_group_ids = var.security_group_ids
+  vpc_security_group_ids = [aws_security_group.db.id]
 
-  backup_retention_period = 7
+
+
+  #var.security_group_ids 
+  #  vpc_security_group_ids = [aws_security_group.bastion.id]
+
+  backup_retention_period = 1
   backup_window           = "03:00-04:00"
   maintenance_window      = "sun:04:00-sun:05:00"
 

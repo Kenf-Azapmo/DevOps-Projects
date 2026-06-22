@@ -26,7 +26,7 @@ resource "aws_cloudwatch_metric_alarm" "rds_cpu" {
   alarm_actions       = []
 
   dimensions = {
-    DBInstanceIdentifier = var.rds_instance_id
+    DBInstanceIdentifier = aws_db_instance.main.id
   }
 
   tags = {
@@ -47,7 +47,7 @@ resource "aws_cloudwatch_metric_alarm" "rds_memory" {
   alarm_actions       = []
 
   dimensions = {
-    DBInstanceIdentifier = var.rds_instance_id
+    DBInstanceIdentifier = aws_db_instance.main.id
   }
 
   tags = {
@@ -70,11 +70,11 @@ resource "aws_cloudwatch_metric_alarm" "asg_cpu" {
   alarm_actions       = []
 
   dimensions = {
-    AutoScalingGroupName = var.asg_name
+    AutoScalingGroupName = aws_autoscaling_group.main.name
   }
 
   tags = {
-    Name        = "${var.environment}-asg-cpu" - alarm
+    Name        = "${var.environment}-asg-cpu-alarm"
     Environment = var.environment
   }
 }

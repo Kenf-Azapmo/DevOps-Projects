@@ -4,7 +4,7 @@
 resource "aws_security_group" "alb" {
   name        = "${var.environment}-alb-sg"
   description = "Security group for application load balancer"
-  vpc_id      = var.vpc_id
+  vpc_id      = aws_vpc.main.id
 
   ingress {
     from_port   = 80
@@ -24,27 +24,27 @@ resource "aws_security_group" "alb" {
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
-    cidr_blocks = ["0.0.0.0./0"]
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   tags = {
     Name        = "${var.environment}-alb-sg"
     Environment = var.environment
   }
-
 }
-
 
 #Application Security Group
 resource "aws_security_group" "name" {
   name        = "${var.environment}-app-sg"
   description = "Security group for application servers"
-  vpc_id      = var.vpc_id
+  vpc_id      = aws_vpc.main.id
+
 
   ingress {
     from_port = 8080
     to_port   = 8080
-    protocol = [
+    protocol  = "tcp"
+    security_groups = [
       aws_security_group.alb.id
     ]
   }
@@ -53,7 +53,7 @@ resource "aws_security_group" "name" {
     from_port       = 22
     to_port         = 22
     protocol        = "tcp"
-    security_groups = [aws_security_group.baston.id]
+    security_groups = [aws_security_group.bastion.id]
   }
 
   egress {
@@ -67,15 +67,13 @@ resource "aws_security_group" "name" {
     Name        = "${var.environment}-app-sg"
     Environment = var.environment
   }
-
 }
-
 
 # Database Security Group
 resource "aws_security_group" "db" {
   name        = "${var.environment}-db-sg"
   description = "Security group for database servers"
-  vpc_id      = var.vpc_id
+  vpc_id      = aws_vpc.main.id
 
   ingress {
     from_port       = 3306
@@ -98,16 +96,16 @@ resource "aws_security_group" "db" {
 }
 
 # Bastion Host Security Group
-resource "aws_security_group" "baston" {
-  name        = "${var.environment}-baston-sg"
+resource "aws_security_group" "bastion" {
+  name        = "${var.environment}-bastion-sg"
   description = "Security group for bastion host"
-  vpc_id      = var.vpc_id
+  vpc_id      = aws_vpc.main.id
 
   ingress {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = var.allowed_cidr_blocks
+    cidr_blocks = ["102.244.197.144/32"] #var.allowed_cidr_blocks
   }
 
   egress {
@@ -118,7 +116,8 @@ resource "aws_security_group" "baston" {
   }
 
   tags = {
-    Name        = "${var.environment}-baston-sg"
+    Name        = "${var.environment}-bastion-sg"
     Environment = var.environment
   }
 }
+

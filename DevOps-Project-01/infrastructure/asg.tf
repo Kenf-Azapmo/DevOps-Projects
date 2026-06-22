@@ -6,7 +6,7 @@ resource "aws_launch_template" "main" {
   instance_type = var.instance_type
   key_name      = var.key_name
 
-  vpc_security_group_ids = var.security_group_ids
+  vpc_security_group_ids = [aws_security_group.name.id]
 
   user_data = base64encode(<<-EOF
               #!/bin/bash
@@ -33,14 +33,14 @@ resource "aws_launch_template" "main" {
 
 resource "aws_autoscaling_group" "main" {
   name                      = "${var.environment}-asg"
-  vpc_zone_identifier       = var.private_subnet_ids
-  target_group_arns         = var.target_group_arns
+  vpc_zone_identifier       = aws_subnet.private[*].id
+  target_group_arns         = [aws_lb_target_group.main.arn]
   health_check_type         = "ELB"
   health_check_grace_period = 300
 
-  max_size         = var.max_size
-  min_size         = var.min_size
-  desired_capacity = var.desired_capacity
+  max_size         = var.asg_max_size
+  min_size         = var.asg_min_size
+  desired_capacity = var.asg_desired_capacity
 
   launch_template {
     id      = aws_launch_template.main.id
