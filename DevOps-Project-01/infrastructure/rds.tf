@@ -2,7 +2,7 @@
 
 resource "aws_db_subnet_group" "main" {
   name       = "${var.environment}-db-subnet-group"
-  subnet_ids = aws_subnet.public[*].id
+  subnet_ids = aws_subnet.private[*].id
 
   tags = {
     Name        = "${var.environment}-db-subnet-group"
@@ -12,6 +12,9 @@ resource "aws_db_subnet_group" "main" {
 
 resource "aws_db_instance" "main" {
   identifier = "${var.environment}-database"
+
+
+  publicly_accessible = false
 
   engine         = "mysql"
   engine_version = "8.0"
