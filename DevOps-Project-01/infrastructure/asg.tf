@@ -8,6 +8,31 @@ resource "aws_launch_template" "main" {
 
   vpc_security_group_ids = [aws_security_group.name.id]
 
+  user_data = base64encode(<<EOF
+#!/bin/bash
+
+yum update -y
+
+amazon-linux-extras install java-openjdk11 -y
+
+yum install -y wget
+
+cd /opt
+
+wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.107/bin/apache-tomcat-9.0.107.tar.gz
+
+tar -xzf apache-tomcat-9.0.107.tar.gz
+
+mv apache-tomcat-9.0.107 tomcat
+
+/opt/tomcat/bin/startup.sh
+
+EOF
+)
+
+
+
+  /*
   user_data = base64encode(<<-EOF
               #!/bin/bash
                 yum update -y
@@ -16,7 +41,8 @@ resource "aws_launch_template" "main" {
                 systemctl enable tomcat
                 systemctl start tomcat
               EOF
-  )
+  ) 
+  */
 
   tag_specifications {
     resource_type = "instance"

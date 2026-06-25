@@ -28,20 +28,22 @@ The infrastructure consists of:
 
 ```
 infrastructure/
-├── main.tf           # Main Terraform configuration
-├── variables.tf      # Input variables
-├── README.md         # This file
-├── modules/
-│   ├── vpc/         # VPC and networking
-│   │   ├── main.tf
-│   │   ├── variables.tf
-│   │   └── outputs.tf
-│   └── security/    # Security groups
-│       ├── main.tf
-│       ├── variables.tf
-│       └── outputs.tf
+├── alb.tf 
+├── asf.tf
+├── bastion.tf
+├── infrastructure.md   # This file
+├── monitoring.tf
+├── outputs.tf
+├── provider.tf
+├── rds.tf
+├── security.tf          # Security groups
+├── terraform.tfvars
+├── variables.tf         # Input variables
+├── vpc.tf               # VPC and networking
+|
 └── environments/    # Environment-specific configurations (optional)
     ├── dev/
+    ├── stage/
     └── prod/
 ```
 
