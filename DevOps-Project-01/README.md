@@ -525,9 +525,8 @@ Your feedback and contributions are welcome!
 
 📧 **Connect with me:**
 - **GitHub**: [@Kenf-Azapmo](https://github.com/Kenf-Azapmo)
-- **Blog**: [ProDevOpsGuy](https://blog.prodevopsguytech.com)
-- **Telegram Community**: [Join Here](https://t.me/prodevopsguy)
 - **LinkedIn**: [KENFAC AZAPMO Marcelin](linkedin.com/in/kenfack-azapmo-marcelin-67a79b1b6)
+- **Email**: [Text Here](azapmokenfack@gmail.com)
 
 ---
 
@@ -540,7 +539,7 @@ If you found this project helpful, please consider:
 
 ### 📢 Stay Connected
 
-![Follow Me](https://imgur.com/2j7GSPs.png)
+# ![Follow Me](https://github.com/login?return_to=https%3A%2F%2Fgithub.com%2FKenf-Azapmo%2F)
 
 > [!Important]
 > This documentation is continuously evolving. For the latest updates, please check the repository regularly.
