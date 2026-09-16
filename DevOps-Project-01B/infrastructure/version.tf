@@ -17,7 +17,7 @@ terraform {
     }
   }
 }
-
+ 
 provider "aws" {
   region = var.aws_region
 
@@ -27,7 +27,5 @@ provider "aws" {
       ManagedBy   = "Terraform"
       Project     = "Java-Application"
     }
-
   }
-
 }

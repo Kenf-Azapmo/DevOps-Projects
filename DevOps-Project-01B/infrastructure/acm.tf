@@ -13,29 +13,7 @@ resource "aws_acm_certificate" "app" {
   }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+# Automatically create the DNS validation record in route 53
 resource "aws_route53_record" "acm_validation" {
   for_each = {
     for dvo in aws_acm_certificate.app.domain_validation_options :
@@ -56,6 +34,7 @@ resource "aws_route53_record" "acm_validation" {
   zone_id = aws_route53_zone.main.zone_id
 }
 
+# Trigger the actual validation  process 
 resource "aws_acm_certificate_validation" "app" {
   certificate_arn = aws_acm_certificate.app.arn
 

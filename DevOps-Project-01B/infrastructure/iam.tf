@@ -33,20 +33,33 @@ resource "aws_iam_role_policy_attachment" "ec2_cloudwatch_agent" {
 
 }
 
-resource "aws_iam_role_policy_attachment" "vpc_flow_logs" {
-  role       = aws_iam_role.vpc_flow_logs_role.name
-  policy_arn = aws_iam_policy.vpc_flow_logs.arn
-}
-
 resource "aws_iam_role_policy_attachment" "ec2_ssm" {
   role       = aws_iam_role.ec2.name
   policy_arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
 
 }
 
+
+
+
+
+
+
+
 resource "aws_iam_instance_profile" "ec2" {
   name = "${var.environment}-ec2-instance-profile"
   role = aws_iam_role.ec2.name
+}
+
+resource "aws_iam_role_policy_attachment" "vpc_flow_logs" {
+  role       = aws_iam_role.vpc_flow_logs_role.name
+  policy_arn = aws_iam_policy.vpc_flow_logs.arn
+}
+
+# Terraform permissions
+resource "aws_iam_role_policy_attachment" "github_terraform_admin" {
+  role       = aws_iam_role.github_terraform.name
+  policy_arn = "arn:aws:iam::aws:policy/AdministratorAccess"
 }
 
 
@@ -55,9 +68,7 @@ resource "aws_iam_instance_profile" "ec2" {
 
 
 
-
-
-# Giving EC2 permission to read the configuration
+# Giving EC2 permission to read the cloudwatch_agent configuration
 resource "aws_iam_role_policy" "cloudwatch_agent" {
   name = "${var.environment}-cloudwatch-agent"
   role = aws_iam_role.ec2.id
