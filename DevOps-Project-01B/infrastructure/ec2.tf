@@ -91,6 +91,7 @@ resource "aws_autoscaling_group" "app" {
     version = "$Latest"
   }
 
+# This is to make the the ASG automatically replace instances when the luch template changes
   instance_refresh {
     strategy = "Rolling"
 

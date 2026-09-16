@@ -20,7 +20,7 @@ resource "aws_alb_target_group" "app" {
   protocol = "HTTP"
   vpc_id   = aws_vpc.main.id
 
-  target_type = "instance"
+  target_type = "instance" 
 
   health_check {
     enabled             = true
@@ -39,7 +39,6 @@ resource "aws_alb_target_group" "app" {
   }
 }
 
-
 resource "aws_alb_listener" "http" {
   load_balancer_arn = aws_alb.main.arn
   port              = 80
@@ -55,30 +54,6 @@ resource "aws_alb_listener" "http" {
     }
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

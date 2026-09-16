@@ -12,4 +12,4 @@ resource "aws_flow_log" "vpc" {
     Name        = "${var.environment}-vpc-flow-log"
     Environment = var.environment
   }
-}
+}   

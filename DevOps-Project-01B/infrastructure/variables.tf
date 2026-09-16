@@ -103,16 +103,24 @@ variable "db_maintenance_window" {
   type        = string
 }
 
-
-
 # Route 53 
 variable "domain_name" {
   description = "Domain name used by the application"
   type        = string
 }
 
+# GitHub repository variables
+variable "github_repository" {
+  description = "GitHub repository allowed to assume the AWS OIDC role, in OWNER/REPOSITORY format"
+  type        = string
+}
 
-
+# Github branch variable
+variable "github_branch" {
+  description = "GitHub branch allowed to assume the AWS OIDC role"
+  type        = string
+  default     = "main"
+}
 
 
 

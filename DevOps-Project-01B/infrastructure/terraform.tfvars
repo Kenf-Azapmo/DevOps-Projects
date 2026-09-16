@@ -21,12 +21,17 @@ db_backup_retention_period = 1
 db_backup_window           = "03:00-04:00"
 db_maintenance_window      = "Sun:04:00-Sun:05:00"
 
-app_health_check_path = "/actuator/health"
+app_health_check_path = "/"
+# app_health_check_path = "/actuator/health"
 
 db_engine_version      = "8.4"
 db_deletion_protection = false
 db_skip_final_snapshot = true
 
-domain_name = "azapmo.com"
+domain_name = "azapmo.com"  
 
 alert_email = "azapmokenfack@gmail.com"
+
+
+github_repository = "https://github.com/Kenf-Azapmo/DevOps-Projects/tree/master/DevOps-Project-01B"
+github_branch     = "main"

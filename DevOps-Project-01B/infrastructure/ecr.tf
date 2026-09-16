@@ -13,6 +13,7 @@ resource "aws_ecr_repository" "app" {
 
 }
 
+# to reduce the number of images founf in the ecr
 resource "aws_ecr_lifecycle_policy" "app" {
   repository = aws_ecr_repository.app.name
 
