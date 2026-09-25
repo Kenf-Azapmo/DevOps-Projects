@@ -1,56 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+
+<!--
+  This project builds against public Maven Central only — no private
+  artifact repository (e.g. JFrog Artifactory) is required. Docker images
+  are pushed to Amazon ECR, not a Maven repository (see ../Dockerfile and
+  the pipeline in ../../pipelines/pipeline.yml).
+ 
+  This file previously pointed at a third-party JFrog Artifactory instance
+  and embedded a plaintext username/password for it. Both were removed:
+  never commit real credentials to a settings.xml (or any file) in the
+  repository. If that password was ever real, rotate/change it wherever
+  it is used — it is public in this repo's git history.
+-->
+
+
 <settings xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.2.0 http://maven.apache.org/xsd/settings-1.2.0.xsd" xmlns="http://maven.apache.org/SETTINGS/1.2.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <servers>
-    <server>
-      <username>prdevop26@gmail.com</username>
-      <password>Admin123!</password>
-      <id>central</id>
-    </server>
-    <server>
-      <username>prdevop26@gmail.com</username>
-      <password>Admin123!</password>
-      <id>snapshots</id>
-    </server>
-  </servers>
-  <profiles>
-    <profile>
-      <repositories>
-        <repository>
-          <snapshots>
-            <enabled>false</enabled>
-          </snapshots>
-          <id>central</id>
-          <name>libs-release</name>
-          <url>https://edshopdpt8.jfrog.io/artifactory/libs-release</url>
-        </repository>
-        <repository>
-          <snapshots />
-          <id>snapshots</id>
-          <name>libs-snapshot</name>
-          <url>https://edshopdpt8.jfrog.io/artifactory/libs-snapshot</url>
-        </repository>
-      </repositories>
-      <pluginRepositories>
-        <pluginRepository>
-          <snapshots>
-            <enabled>false</enabled>
-          </snapshots>
-          <id>central</id>
-          <name>libs-release</name>
-          <url>https://edshopdpt8.jfrog.io/artifactory/libs-release</url>
-        </pluginRepository>
-        <pluginRepository>
-          <snapshots />
-          <id>snapshots</id>
-          <name>libs-snapshot</name>
-          <url>https://edshopdpt8.jfrog.io/artifactory/libs-snapshot</url>
-        </pluginRepository>
-      </pluginRepositories>
-      <id>artifactory</id>
-    </profile>
-  </profiles>
-  <activeProfiles>
-    <activeProfile>artifactory</activeProfile>
-  </activeProfiles>
-</settings>

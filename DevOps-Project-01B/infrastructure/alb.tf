@@ -74,7 +74,7 @@ resource "aws_alb_listener" "https" {
 
   depends_on = [
     aws_acm_certificate_validation.app
-  ]  
+  ]
 
 }
 

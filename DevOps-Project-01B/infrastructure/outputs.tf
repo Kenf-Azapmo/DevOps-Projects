@@ -154,7 +154,7 @@ output "route53_zone_id" {
 output "application_domain" {
   description = "Application domain name"
   value       = aws_route53_record.app.fqdn
-} 
+}
 
 # Role ARN
 output "github_terraform_role_arn" {

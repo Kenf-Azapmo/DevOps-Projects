@@ -146,8 +146,8 @@ variable "db_deletion_protection" {
 
 variable "db_skip_final_snapshot" {
   description = "Whether to skip the final RDS snapshot on deletion"
-  type    = bool
-  default = true
+  type        = bool
+  default     = true
 }
 
 # SNS 

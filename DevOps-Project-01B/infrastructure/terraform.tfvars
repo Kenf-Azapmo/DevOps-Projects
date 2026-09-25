@@ -1,9 +1,9 @@
 aws_region         = "us-east-1"
 environment        = "dev"
-vpc_cidr           = "192.168.0.0/16"
-public_subnets     = ["192.168.1.0/24", "192.168.2.0/24"]
-app_subnets        = ["192.168.3.0/24", "192.168.4.0/24"]
-db_subnets         = ["192.168.5.0/24", "192.168.6.0/24"]
+vpc_cidr           = "10.0.0.0/16"
+public_subnets     = ["10.0.1.0/24", "10.0.2.0/24"]
+app_subnets        = ["10.0.11.0/24", "10.0.12.0/24"]
+db_subnets         = ["10.0.21.0/24", "10.0.22.0/24"]
 availability_zones = ["us-east-1a", "us-east-1b"]
 
 app_port             = 8080
@@ -28,10 +28,10 @@ db_engine_version      = "8.4"
 db_deletion_protection = false
 db_skip_final_snapshot = true
 
-domain_name = "azapmo.com"  
+domain_name = "azapmo.com"
 
 alert_email = "azapmokenfack@gmail.com"
 
 
-github_repository = "https://github.com/Kenf-Azapmo/DevOps-Projects/tree/master/DevOps-Project-01B"
-github_branch     = "main"
+github_repository = "Kenf-Azapmo/DevOps-Projects"
+github_branch     = "master"
