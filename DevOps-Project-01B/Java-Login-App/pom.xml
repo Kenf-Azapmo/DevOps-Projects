@@ -32,6 +32,14 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-validation</artifactId>
 		</dependency>
+		<!-- Exposes /actuator/health, which infrastructure/alb.tf's target group
+		     health check (var.app_health_check_path, default "/actuator/health")
+		     depends on. Without this dependency the ALB can never mark an
+		     instance healthy. -->
+				<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.apache.tomcat/tomcat-jasper -->
 		<dependency>
 		    <groupId>org.apache.tomcat</groupId>
@@ -75,12 +83,5 @@
 			</plugin>
 		</plugins>
 	</build>
-<distributionManagement>
-    <repository>
-        <id>central</id>
-        <name>a0nymgefaiwwu-artifactory-primary-0-releases</name>
-        <url>https://edshopdpt8.jfrog.io/artifactory/libs-release-local</url>
-    </repository>
-</distributionManagement> 
-
+	
 </project>
